@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>new Decision Duck</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Decision Duck — Pros & Cons Helper</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Friendly rounded font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body class="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-sky-50 text-slate-800">
+  <!-- Header with centered Cloudinary logo -->
+  <header class="py-8">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4">
+        <img
+          src="https://res.cloudinary.com/diwypkce4/image/upload/v1759768773/Decision_Duck_Logo_lhprxk.png"
+          alt="Decision Duck logo"
+          class="h-16 sm:h-20 w-auto floaty drop-shadow-md select-none"
+          loading="eager"
+          decoding="async"
+        />
+        <h1 class="sr-only">Decision Duck</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 pb-24">
+    <!-- Card -->
+    <section class="bg-white/80 backdrop-blur rounded-3xl shadow-lg border border-yellow-100">
+      <!-- Topic -->
+      <div class="p-6 sm:p-8 border-b">
+        <label for="topic" class="block text-sm font-semibold text-slate-700 mb-2">
+          What decision are you thinking about?
+        </label>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input id="topic" type="text" placeholder="e.g., Should I buy a keyboard for our studio?"
+                 class="flex-1 rounded-xl border border-slate-200 px-4 py-3 focus-ring"
+                 aria-describedby="topic-help"/>
+          <button id="clearAllBtn"
+                  class="rounded-xl px-4 py-3 bg-slate-100 hover:bg-slate-200 active:translate-y-px transition shadow-sm"
+                  title="Clear everything">
+            Reset
+          </button>
+        </div>
+        <p id="topic-help" class="text-xs text-slate-500 mt-2">
+          Tip: Be specific. Clear topics make clearer quacks.
+        </p>
+      </div>
+
+      <!-- Input rows -->
+      <div class="grid sm:grid-cols-2 gap-0">
+        <!-- Pros -->
+        <div class="p-6 sm:p-8 border-b sm:border-b-0 sm:border-r">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold">Pros</h2>
+            <span id="prosTotal" class="text-sm px-2.5 py-1 rounded-full bg-green-50 text-green-700 border border-green-200">
+              Total: —
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <div class="flex gap-2">
+              <input id="proText" type="text" placeholder="Add a pro…"
+                     class="flex-1 rounded-lg border border-slate-200 px-3 py-2 focus-ring" />
+              <label class="sr-only" for="proScore">Pro score</label>
+              <select id="proScore"
+                      class="rounded-lg border border-slate-200 px-3 py-2 focus-ring"></select>
+              <button id="addProBtn"
+                      class="rounded-lg px-4 py-2 bg-green-500 text-white font-semibold hover:bg-green-600 active:translate-y-px transition">
+                Add
+              </button>
+            </div>
+
+            <!-- Done toggle for Pros -->
+            <label class="inline-flex items-center gap-2 text-xs text-slate-600">
+              <input type="checkbox" id="prosDone" class="accent-amber-400">
+              <span>I’m done adding pros</span>
+            </label>
+
+            <!-- Pro score legend (1–5) -->
+            <div class="mt-1 text-xs text-slate-600" aria-label="Pro score legend">
+              <div class="font-semibold text-slate-700 mb-1">Pro score legend (1–5):</div>
+              <ul class="space-y-1">
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-green-300"></span><span><strong>1</strong> — ok</span></li>
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-green-400"></span><span><strong>2</strong> — nice to have</span></li>
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-green-500"></span><span><strong>3</strong> — solid benefit</span></li>
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-green-600"></span><span><strong>4</strong> — excites me</span></li>
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-green-700"></span><span><strong>5</strong> — makes me happy</span></li>
+              </ul>
+            </div>
+
+            <ul id="prosList" class="mt-2 space-y-2"></ul>
+          </div>
+        </div>
+
+        <!-- Cons -->
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold">Cons</h2>
+            <span id="consTotal" class="text-sm px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200">
+              Total: —
+            </span>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <div class="flex gap-2">
+              <input id="conText" type="text" placeholder="Add a con…"
+                     class="flex-1 rounded-lg border border-slate-200 px-3 py-2 focus-ring" />
+              <label class="sr-only" for="conScore">Con score</label>
+              <select id="conScore"
+                      class="rounded-lg border border-slate-200 px-3 py-2 focus-ring"></select>
+              <button id="addConBtn"
+                      class="rounded-lg px-4 py-2 bg-rose-500 text-white font-semibold hover:bg-rose-600 active:translate-y-px transition">
+                Add
+              </button>
+            </div>
+
+            <!-- Done toggle for Cons -->
+            <label class="inline-flex items-center gap-2 text-xs text-slate-600">
+              <input type="checkbox" id="consDone" class="accent-amber-400">
+              <span>I’m done adding cons</span>
+            </label>
+
+            <!-- Con score legend (1–5) -->
+            <div class="mt-1 text-xs text-slate-600" aria-label="Con score legend">
+              <div class="font-semibold text-slate-700 mb-1">Con score legend (1–5):</div>
+              <ul class="space-y-1">
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span><span><strong>1</strong> — Unacceptable</span></li>
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-rose-400"></span><span><strong>2</strong> — Hard to accept</span></li>
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span><span><strong>3</strong> — Manageable</span></li>
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-lime-400"></span><span><strong>4</strong> — Mostly OK</span></li>
+                <li class="flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full bg-green-500"></span><span><strong>5</strong> — I can deal with it</span></li>
+              </ul>
+            </div>
+
+            <ul id="consList" class="mt-2 space-y-2"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary + Recommendation -->
+      <div class="p-6 sm:p-8 border-t bg-gradient-to-br from-yellow-50 to-white rounded-b-3xl">
+        <div class="flex flex-col lg:flex-row gap-6 lg:items-center lg:justify-between">
+          <div class="flex-1">
+            <h3 class="font-extrabold text-lg">Your Scoreboard</h3>
+            <p id="scoreLine" class="text-slate-600 mt-1">
+              Lock both lists to see totals.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 items-stretch">
+            <button id="recommendBtn"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold shadow-md active:translate-y-px transition focus-ring">
+              <span class="text-xl">🦆</span> Get Recommendation
+            </button>
+            <button id="shareBtn"
+                    class="rounded-xl px-5 py-3 bg-sky-100 hover:bg-sky-200 text-slate-800 font-semibold shadow-sm active:translate-y-px transition focus-ring">
+              Share
+            </button>
+          </div>
+        </div>
+
+        <div id="recommendation"
+             class="mt-4 p-4 sm:p-5 rounded-2xl border bg-white/80"
+             role="status" aria-live="polite">
+          <div class="flex items-start gap-3">
+            <div class="text-2xl" id="recIcon">🙂</div>
+            <div>
+              <div id="recHeading" class="font-extrabold text-lg">Hello from Decision Duck!</div>
+              <p id="recText" class="text-slate-700 mt-1">
+                Add items, check “I’m done” on both sides, then press “Get Recommendation.”
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-500 mt-3">
+          This is a playful guide, not legal/medical/financial advice. You’re the captain — I’m just the duck. 🦆
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pb-10 text-center text-xs text-slate-500">
+    <p>Made with ❤️ and 🦆. Your lists are saved in your browser.</p>
+  </footer>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

@@ -1,0 +1,22 @@
+:root {
+  --brand-yellow: #fde047; /* Tailwind yellow-300 */
+  --brand-sky:    #38bdf8; /* sky-400 */
+}
+
+html, body {
+  font-family: "Nunito", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* Floating logo animation */
+.floaty { animation: floaty 3s ease-in-out infinite; }
+@keyframes floaty {
+  0%,100% { transform: translateY(0) }
+  50%     { transform: translateY(-6px) }
+}
+
+/* Accessible focus ring */
+.focus-ring:focus-visible {
+  outline: 3px solid var(--brand-sky);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
